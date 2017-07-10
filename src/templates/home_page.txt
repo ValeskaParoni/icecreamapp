@@ -1,0 +1,6 @@
+
+ola {{name}}!
+
+
+para sair, clique <a href={{logout_url}}>aqui</a>
+

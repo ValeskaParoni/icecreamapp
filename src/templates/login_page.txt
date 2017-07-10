@@ -1,0 +1,15 @@
+<form action={{login_post_url}} method='POST'>
+    <input type='text' name='username'>Login</input> <br/>
+    <input type='password' name='pass'>Senha</input> <br/>
+    <input type='submit'>Entrar</input> <br/>
+{% if username_error %}
+<p>Username tá errado! :(</p>
+{% else %}
+{% if password_error %}
+<p>Password tá errada! :(</p>
+{% endif %}
+{% endif %}
+</form>
+
+<p>clica <a href={{create_account_url}}>aqui</a> pra fazer uma conta nova</p>
+
