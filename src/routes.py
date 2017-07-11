@@ -1,9 +1,11 @@
 from flask import Flask, session, request, render_template, redirect
-import auth
+from flask_sqlalchemy import SQLAlchemy
+import auth_v2
 
 app = Flask(__name__)
 app.secret_key = '34whiufgiug8342'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////user.db'
+db = SQLAlchemy(app)
 
 
 @app.route('/login', methods=["GET"])
