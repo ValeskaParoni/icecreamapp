@@ -2,10 +2,10 @@
     <input type='text' name='username'>Login</input> <br/>
     <input type='password' name='pass'>Senha</input> <br/>
     <input type='submit'>Entrar</input> <br/>
-{% if username_error %}
+{% if error == 'wrong_username' %}
 <p>Username tá errado! :(</p>
 {% else %}
-{% if password_error %}
+{% if error == 'wrong_password' %}
 <p>Password tá errada! :(</p>
 {% endif %}
 {% endif %}

@@ -1,6 +1,20 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from routes import db
+from flask import Flask
+
+
+app = Flask(__name__)
+app.secret_key = '34whiufgiug8342'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/valeska/Documents/icecreamapp/src/user.db'
+
+db = SQLAlchemy(app)
+
+class LoginException(Exception):
+    def __init__(self, error):
+        self.error = error
+    def msg(self):
+        return self.error
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,55 +27,40 @@ class User(db.Model):
         self.pw_hash = password_hash
         self.name = name
 
-    def _check_password(self, password):
+    def check_password(self, password):
         return check_password_hash(self.pw_hash, password)
 
     def _get_name(self):
         return self.name
 
-'''
+    @staticmethod
+    def user_exists(username):
+        users = User.query.filter_by(username=username)
+        return users.first()
 
 
-def create_user(username, password, name):
-    if not _get_user_by_username(username):
-        password_hash = generate_password_hash(password)
-        cursor.execute("insert into user(username, password_hash, name) values(?, ?, ?)", (username, password_hash, name))
-        db_connection.close()
-        return User(username, password_hash, name)
-    return None
+    @staticmethod
+    def create_user(username, unhashed_password, name):
+        if not User.user_exists(username):
+            db.session.add(User(username, generate_password_hash(unhashed_password), name))
+            db.session.commit()
+            return True
+        return False
 
-def _get_user_by_username(username):
-    db_connection = sqlite3.connect('../user.db')
-    cursor = db_connection.cursor()
-    cursor.execute("select * from user where username=?", [username])
+    @staticmethod
+    def check_user_and_password(username, unhashed_password):
+        user = User.user_exists(username)
+        if user:
+            if user.check_password(unhashed_password):
+                return user 
+            raise LoginException('wrong_password')
+        raise LoginException('wrong_username')
 
-    if cursor.fetchall():
-        user_data = cursor.fetchall()[0]
-        name = user_data[1]
-        password_hash = user_data[2]
-        return User(username, password_hash, name)
-
-    return None
-
-def get_user_by_username(username):
-    user = _get_user_by_usarname(username)
-    db_connection.close()
-    return user
-
-
-print ("1: criar usuario")
-print (create_user('uservaleska', 'senha', 'nomevaleska'))
-print ("2: criar usuario")
-print (create_user('uservaleska2', 'senha', 'nomevaleska'))
-print ("3: criar usuario")
-print (create_user('uservaleska3', 'senha', 'nomevaleska'))
-
-print ("4: mostrar todos os usuarios")
-conn = sqlite3.connect('../user.db')
-c = conn.cursor()
-c.execute("select * from user")
-print (c.fetchall())
-print ("5: buscar usuario uservaleska")
-print (get_user_by_username('uservaleska'))       
-
-'''                 
+    @staticmethod
+    def get_name(username):
+        user = user_exists(username)
+        try:
+            return user._get_name()
+        except Exception as a:
+            print (a)
+            return False
