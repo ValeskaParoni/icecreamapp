@@ -1,0 +1,33 @@
+body {
+  background: url(back.png);
+  font-size: 3vw;
+  font-family: 'Kurale', serif;
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_form{
+  border: 3px solid pink;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,.3);
+  padding: 1vh;
+}
+
+form {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size:5vw;
+  }
+}

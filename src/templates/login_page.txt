@@ -1,15 +1,18 @@
-<form action={{login_post_url}} method='POST'>
-    <input type='text' name='username'>Login</input> <br/>
-    <input type='password' name='pass'>Senha</input> <br/>
-    <input type='submit'>Entrar</input> <br/>
-{% if error == 'wrong_username' %}
-<p>Username tá errado! :(</p>
-{% else %}
-{% if error == 'wrong_password' %}
-<p>Password tá errada! :(</p>
-{% endif %}
-{% endif %}
-</form>
-
-<p>clica <a href={{create_account_url}}>aqui</a> pra fazer uma conta nova</p>
-
+<title>SorvApp - Login</title>
+<link href="https://fonts.googleapis.com/css?family=Kurale" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='static/style.css' media='all'>
+    <div id='login_form'>
+       <form action={{login_post_url}} method='POST'>
+        <label for='username'>Login</label><input type='text' name='username'></input> <br/>
+        <label for='pass'>Senha</label><input type='password' name='pass'></input> <br/>
+        <input type='submit'>Entrar</input><span>Esqueceu a senha?</span><br/>
+        {% if error == 'wrong_username' %}
+        <p>Username tá errado! :(</p>
+        {% else %}
+        {% if error == 'wrong_password' %}
+        <p>Password tá errada! :(</p>
+        {% endif %}
+        {% endif %}
+        <p>clica <a href={{create_account_url}}>aqui</a> pra fazer uma conta nova</p>
+      </form>
+    </div>
