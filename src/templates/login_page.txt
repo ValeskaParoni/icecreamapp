@@ -1,11 +1,11 @@
 <title>SorvApp - Login</title>
-<link href="https://fonts.googleapis.com/css?family=Kurale" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Muli|Poppins|Quicksand" rel="stylesheet">
 <link rel='stylesheet' type='text/css' href='static/style.css' media='all'>
     <div id='login_form'>
        <form action={{login_post_url}} method='POST'>
-        <label for='username'>Login</label><input type='text' name='username'></input> <br/>
-        <label for='pass'>Senha</label><input type='password' name='pass'></input> <br/>
-        <input type='submit'>Entrar</input><span>Esqueceu a senha?</span><br/>
+        <input type='text' name='username' autofocus required placeholder='username' class='big-thing cute-text-input cute-thing'></input>
+        <input type='password' name='pass' required placeholder='password' class='cute-text-input big-thing cute-thing'></input>
+        <input type='submit' value='Go!' class='cute-thing big-thing cute-button'></input>
         {% if error == 'wrong_username' %}
         <p>Username tá errado! :(</p>
         {% else %}
@@ -13,6 +13,7 @@
         <p>Password tá errada! :(</p>
         {% endif %}
         {% endif %}
-        <p>clica <a href={{create_account_url}}>aqui</a> pra fazer uma conta nova</p>
       </form>
+      <div class='big-thing'><a href='/forgotpassword'><button class='cute-thing cute-button'>I forgot my password</button></a>
+      <a href={{create_account_url}}><button class='cute-thing cute-button'>Create new account</button></a></div>
     </div>
