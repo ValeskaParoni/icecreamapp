@@ -5,12 +5,13 @@
   <form action={{create_account_post_url}} method='POST'>
     <input type='text' name='username' autofocus required placeholder='username' class='big-thing cute-text-input cute-thing'></input>
     <input type='password' name='pass' required placeholder='password' class='cute-text-input big-thing cute-thing'></input>
-    <input type='tex' name='name' required placeholder='name' class='cute-text-input cute-thing big-thing'></input>    
+    <input type='text' name='name' required placeholder='name' class='cute-text-input cute-thing big-thing'></input>
+    <input type='email' name='email' required placeholder='email' class='cute-text-input cute-thing big-thing'></input>
     <input type='submit' value='Create account!' class='cute-thing big-thing cute-button'></input>
 {% if username_error %}
 <p>O username escolhido já existe, tente outro :(</p>
 {% else %}
 {% endif %}
 </form>
-<a href='\login'><button class='cute-thing cute-button'>I already have an account</button></a>
+<a href='\login'><button class='big-thing cute-thing cute-button'>I already have an account</button></a>
 </div>

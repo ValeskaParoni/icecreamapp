@@ -14,6 +14,6 @@
         {% endif %}
         {% endif %}
       </form>
-      <div class='big-thing'><a href='/forgotpassword'><button class='cute-thing cute-button'>I forgot my password</button></a>
+      <div class='big-thing'><a href={{forgot_password_url}}><button class='cute-thing cute-button'>I forgot my password</button></a>
       <a href={{create_account_url}}><button class='cute-thing cute-button'>Create new account</button></a></div>
     </div>

@@ -1,0 +1,10 @@
+<title>SorvApp - Login</title>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Muli|Poppins|Quicksand" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='static/style.css' media='all'>
+<div id='email_sent'>
+  <form action={{send_email_url}} method='POST'>
+    <input type='text' name='email' value={{email}} style='display:none'></input>
+    <input type='submit' value='Resend email' class='cute-thing big-thing cute-button'></input>
+  </form>
+</div>
+
