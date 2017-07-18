@@ -1,0 +1,8 @@
+{% extends 'form_template.html' %}
+{% set submit_value = 'Resend email' %}
+{% set title = 'Recover password' %}
+
+{% block input -%}
+<input type='email' name='email' value={{email}} style='display:none'></input>
+{%- endblock input %}
+

@@ -1,0 +1,23 @@
+{% extends 'form_template.html' %}
+{% set submit_value = 'Create account!' %}
+{% set title = 'Create Account' %}
+
+{% block input -%}
+<input type='text' name='username' placeholder='username' autofocus required class='big-thing cute-text-input cute-thing'></input>
+<input type='text' name='name' placeholder='name' required class='big-thing cute-text-input cute-thing'></input>
+<input type='email' name='email' placeholder='email' required class='big-thing cute-text-input cute-thing'></input>
+<input type='password' name='password' required placeholder='password' class='cute-text-input big-thing cute-thing'></input>
+{%- endblock input %}
+
+{% block error -%}
+{% if error == 'username_exists' %}
+<p>username ja existe</p>
+{% endif %}
+{%- endblock error %}
+
+{% block afterform -%}
+<div class='big-thing'>
+  <a href={{login_url}}><button class='cute-thing cute-button'>I already have an account</button></a>
+</div>
+{%- endblock afterform %}
+

@@ -43,6 +43,7 @@ class User(db.Model):
 
     def change_password(self, new_unhashed_password):
         self.pw_hash = generate_password_hash(new_unhashed_password)
+        db.session.commit()
 
 
     @staticmethod
@@ -56,13 +57,13 @@ class User(db.Model):
             db.session.add(User(username, generate_password_hash(unhashed_password), name, email))
             db.session.commit()
             return True
-        return False
+        raise LoginException('username_exists')
 
     @staticmethod
     def find_email(email):
-        users = User.query.filter_by(email=email)
-        if users:
-            return users.first()
+        user = User.query.filter_by(email=email).first()
+        if user:
+            return user
         else:
             raise LoginException('wrong_email')
 

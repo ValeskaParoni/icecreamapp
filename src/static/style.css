@@ -1,10 +1,11 @@
 body {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAg0lEQVQoU2P89fDd/29H7zDwc/ExfGT6zcClL83wbNZ+BnlTbRQ+44dlp/4TUiSV5sjA+H/Djf/4TAIpAtnI+GHT5f+4rIMpAtnICHIjzE0MDAwMvw3FwG5EVgSykfFB9dr/6A5HVwSyEcON2BSBbEBxIy5FIBvhbsSnCO5GQopAbgQAHN6WxKGoT2gAAAAASUVORK5CYII=)repeat;
   font-size: 3vw;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Questrial', sans-serif;
   margin: 0px;
   height: 100vh;
   display: flex;
+  color: white;
   justify-content: center;
   align-items: center;
 }
@@ -19,6 +20,7 @@ form {
 
 .big-thing {
   width:100%;
+  box-sizing:border-box;
 }
 
 .cute-thing {

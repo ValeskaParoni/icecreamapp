@@ -1,0 +1,11 @@
+{% extends 'base_template.html' %}
+{% block content -%}
+<div class='form'>
+  <form action={{send_to}} method='POST'>
+    {% block input %}{% endblock input %}
+    <input type='submit' value={{submit_value}} class='cute-thing big-thing cute-button'></input>
+  </form>
+  {% block error %}{% endblock error %}
+  {% block afterform %}{% endblock afterform %}
+</div>
+{%- endblock content %}

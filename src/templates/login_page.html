@@ -1,0 +1,24 @@
+{% extends 'form_template.html' %}
+{% set submit_value ='Go!' %}
+{% set title = 'Login' %}
+
+{% block input -%}
+<input type='text' name='username' placeholder='username' autofocus required class='big-thing cute-text-input cute-thing'></input>
+<input type='password' name='password' required placeholder='password' class='cute-text-input big-thing cute-thing'></input>
+{%- endblock input %}
+
+{% block error -%}
+{% if error == 'wrong_username' %}
+<p>username ta errado</p>
+{% else %}
+{% if error == 'wrong_password' %}
+<p>password ta errada</p>
+{% endif %}{% endif %}
+{%- endblock error %}
+
+{% block afterform -%}
+<div class='big-thing'>
+  <a href={{forgot_password_url}}><button class='cute-thing cute-button'>I forgot my password</button></a>
+  <a href={{create_account_url}}><button class='cute-thing cute-button'>Create new account</button></a>
+</div>
+{%- endblock afterform %}

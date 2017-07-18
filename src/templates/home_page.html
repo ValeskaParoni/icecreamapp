@@ -1,0 +1,11 @@
+{% extends 'base_template.html' %}
+{% set title = 'Welcome' %}
+{% block content %}
+<div>
+  <p>Olá, {{name}}!</p>
+  <div class='big-thing'>
+    <a href={{logout_url}}><button class='cute-thing cute-button'>Logout</button></a>
+    <a href={{change_password_url}}><button class='cute-thing cute-button'>Change password</button></a>
+  </div>
+</div>
+{% endblock content -%}
