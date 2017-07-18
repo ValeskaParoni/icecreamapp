@@ -1,23 +1,5 @@
-from flask import session, request, render_template, redirect
-from auth_v2 import User, app, LoginException
-
-
-@app.route('/login', methods=["GET"])
-def login_page(error=False):
-    if 'logged_in' in session:
-        return redirect('/home')
-    print(error)
-    return render_template('login_page.html', send_to = '/login', create_account_url = '/createaccount', error=error, forgot_password_url ='/forgotpassword')
-
-@app.route('/login', methods=["POST"])
-def check_login():
-    try:
-        user = User.check_user_and_password(request.form['username'], request.form['password'])
-    except LoginException as e:
-        return login_page(e.error)
-    session['logged_in'] = user._get_username()
-    session['name'] = user._get_name()
-    return redirect('/home')
+from settings.config_app import app, session, redirect, render_template, request
+from utils.auth import User, LoginException
 
 @app.route('/forgotpassword', methods=["GET"])
 def forgot_password_page(error=False):
@@ -52,7 +34,7 @@ def change_password():
             user.change_password(new_password)
             return render_template('password_changed_page.html', home='/home')
         except LoginException as e:
-            return ask_for_new_password(e.error) 
+            return ask_for_new_password(e.error)
 
 @app.route('/createaccount', methods=["GET"])
 def render_new_account_page(error=False):
@@ -68,24 +50,3 @@ def create_new_account():
     except LoginException as e:
         return render_new_account_page(e.error)
 
-@app.route('/logout')
-def logout():
-    if 'logged_in' in session:
-        session.pop('logged_in')
-    if 'name' in session:
-        session.pop('name')
-    return redirect('/login')
-
-@app.route('/home')
-def home_page():
-    if 'logged_in' in session:
-        return render_template('home_page.html', name = session['name'], logout_url = '/logout', change_password_url='/changepassword')
-    return redirect('/login')
-
-@app.route('/')
-def default():
-    return redirect('/home')
-
-
-if __name__ == '__main__':
-    app.run()
