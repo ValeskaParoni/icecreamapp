@@ -1,4 +1,4 @@
-from settings.config_app import app, session, redirect, render_template, request
+from config_app import app, session, redirect, render_template, request
 from utils.auth import User, LoginException
 
 @app.route('/forgotpassword', methods=["GET"])

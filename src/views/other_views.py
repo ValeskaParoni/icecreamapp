@@ -1,4 +1,4 @@
-from settings.config_app import app, session, redirect, render_template
+from config_app import app, session, redirect, render_template
 
 @app.route('/home')
 def home_page():

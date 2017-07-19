@@ -1,5 +1,5 @@
 from views import account_views, login_views, other_views
-from settings.config_app import app, redirect
+from config_app import app, redirect
 
 @app.route('/')
 def default():

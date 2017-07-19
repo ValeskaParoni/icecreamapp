@@ -1,4 +1,4 @@
-from settings.config_app import generate_password_hash, check_password_hash, db, app
+from config_app import generate_password_hash, check_password_hash, db, app
 
 class LoginException(Exception):
     def __init__(self, error):
@@ -74,3 +74,17 @@ class User(db.Model):
         except Exception as a:
             print (a)
             return False
+
+    def isAdmin():
+        try:
+            result = Admin.query.filter_by(user_id=this.id).first()
+            return True
+        except Exception as e:
+            return False
+
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, unique=True)
+
+    def __init__(user):
+        user_id = user.id

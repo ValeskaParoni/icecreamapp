@@ -60,6 +60,9 @@ form {
   body {
     font-size:5vw;
   }
+  .cute-button {
+    width: 100%;
+  }
 }
 
 @media (max-width: 400px) {
